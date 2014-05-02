@@ -112,5 +112,5 @@ app.route('/api/locations/:id')
     });
 
 
-app.listen(4242);
-console.log('Listening on port 4242');
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || 4242);
+console.log('Listening on some port...');
