@@ -1,0 +1,23 @@
+<div class="float-left">
+    Search: <input ng-model="query">
+    <br>
+    Sort by:
+    <select ng-model="orderProp">
+        <option value="name">Alphabetical</option>
+        <option value="-date_modified">Newest</option>
+    </select>
+    <br>
+
+    <p>Total number of locations: {{locations.length}}</p>
+</div>
+
+<div class="float-left">
+    <ul class="phones">
+        <li ng-repeat="location in locations | filter:query | orderBy:orderProp" class="thumbnail">
+            <a href="#/locations/{{location._id}}" class="thumb"><img height="25px" ng-src="{{location.imageUrl}}"></a>
+            <a href="#/locations/{{location._id}}">{{location.name}}</a>
+            {{location.city}} - {{location.country}} - {{location.formatted_address}} - {{location.description}}
+            <!--{{location.date_modified | date : 'dd.MM.yyyy @ HH:mm:ss'}}-->
+        </li>
+    </ul>
+</div>
