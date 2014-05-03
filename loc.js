@@ -1,6 +1,15 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
-mongoose.connect('mongodb://localhost/app');
+var ip_db = process.env.OPENSHIFT_MONGODB_DB_HOST || "localhost";
+var port_db = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
+
+var auth_options = {
+    user: 'admin_full',
+    pass: 'ZklsJ-GyWuCP',
+    auth: {authdb:'admin'}
+}
+
+mongoose.connect('mongodb://' + ip_db + ':' + port_db + '/nodeapp', auth_options);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -112,5 +121,8 @@ app.route('/api/locations/:id')
     });
 
 
-app.listen(process.env.OPENSHIFT_NODEJS_PORT || 4242);
+// Start the server.
+var port = process.env.OPENSHIFT_NODEJS_PORT || 4242;
+var ip = process.env.OPENSHIFT_NODEJS_IP || "localhost";
+app.listen(port, ip);
 console.log('Listening on some port...');
