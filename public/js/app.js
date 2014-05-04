@@ -11,6 +11,10 @@ nodeApp.config(['$routeProvider',
                 templateUrl: 'partials/location-detail.html',
                 controller: 'locationDetailCtrl'
             }).
+            when('/locations/:locationId/fullImage/:imgIndex', {
+                templateUrl: 'partials/location-detail-fullImage.html',
+                controller: 'locationDetailCtrl'
+            }).
             otherwise({
                 redirectTo: '/locations'
             });

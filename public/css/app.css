@@ -2,13 +2,15 @@ body {
     padding-top: 10px;
 }
 
-a.nounderline:link
-{
+a.nounderline:link {
     text-decoration:none;
 }
 
-a:visited
-{
+a:visited {
+    color: #000000;
+}
+
+a:link {
     color: #000000;
 }
 
