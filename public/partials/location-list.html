@@ -16,7 +16,7 @@
         <li ng-repeat="location in locations | filter:query | orderBy:orderProp" class="thumbnail">
             <a href="#/locations/{{location._id}}" class="thumb"><img height="25px" ng-src="{{location.imageUrl}}"></a>
             <a href="#/locations/{{location._id}}">{{location.name}}</a>
-            {{location.city}} - {{location.country}} - {{location.formatted_address}} - {{location.description}}
+            {{location.city}} - {{location.country}} - {{location.formatted_address}}
             <!--{{location.date_modified | date : 'dd.MM.yyyy @ HH:mm:ss'}}-->
         </li>
     </ul>

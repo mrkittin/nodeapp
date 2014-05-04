@@ -16,7 +16,7 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
 appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$http',
     function ($scope, $routeParams, $http) {
         $http.get('api/locations/' + $routeParams.locationId ).success(function(data) {
-            var newData = _.extend({}, data, {imageUrl: 'img/location.jpg'});
+            var newData = _.extend({}, data, {imageUrl: ['img/location.jpg', 'img/location2.jpg', 'img/location3.jpg']});
             $scope.location = newData;
         })
     }]);

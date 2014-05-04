@@ -48,14 +48,8 @@
     <fieldset class="float-left"
               style="display: table-column; width: 50%; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc;">
         <legend style="color: #ccc">Images</legend>
-        <span class="float-left margin-left-5">
-        <img height="60px" ng-src="{{location.imageUrl}}">
-        </span>
-        <span class="float-left margin-left-5">
-        <img height="60px" ng-src="{{location.imageUrl}}">
-        </span>
-        <span class="float-left margin-left-5">
-        <img height="60px" ng-src="{{location.imageUrl}}">
+        <span ng-repeat="image in location.imageUrl" class="float-left margin-left-5">
+            <img height="60px" ng-src="{{image}}" style="border: 1px solid">
         </span>
     </fieldset>
     <fieldset class="float-left"
