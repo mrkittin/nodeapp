@@ -13,7 +13,10 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
     $scope.orderProp = 'name';
 }]);
 
-appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams',
-    function ($scope, $routeParams) {
-        $scope.locationId = $routeParams.locationId;
+appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$http',
+    function ($scope, $routeParams, $http) {
+        $http.get('api/locations/' + $routeParams.locationId ).success(function(data) {
+            var newData = _.extend({}, data, {imageUrl: 'img/location.jpg'});
+            $scope.location = newData;
+        })
     }]);

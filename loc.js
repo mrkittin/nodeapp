@@ -7,7 +7,9 @@ var auth_options = {
     user: 'admin_full',
     pass: 'ZklsJ-GyWuCP',
     auth: {authdb:'admin'}
-}
+};
+
+if (ip_db === 'localhost') auth_options = {};
 
 mongoose.connect('mongodb://' + ip_db + ':' + port_db + '/nodeapp', auth_options);
 
