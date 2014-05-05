@@ -1,4 +1,4 @@
-var nodeApp = angular.module('nodeApp', ['ngRoute', 'appControllers']);
+var nodeApp = angular.module('nodeApp', ['ngRoute', 'appControllers', 'locationsAnimations']);
 
 nodeApp.config(['$routeProvider',
     function($routeProvider) {

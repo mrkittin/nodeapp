@@ -13,7 +13,7 @@
 
 <div class="float-left">
     <ul class="phones">
-        <li ng-repeat="location in locations | filter:query | orderBy:orderProp" class="thumbnail">
+        <li ng-repeat="location in locations | filter:query | orderBy:orderProp" class="thumbnail locations-listing">
             <a href="#/locations/{{location._id}}" class="thumb"><img height="25px" ng-src="{{location.imageUrl}}"></a>
             <a href="#/locations/{{location._id}}">{{location.name}}</a>
             {{location.city}} - {{location.country}} - {{location.formatted_address}}

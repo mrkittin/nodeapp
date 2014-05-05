@@ -1,33 +1,33 @@
 /* animate ngRepeat in phone listing */
 
-.phone-listing.ng-enter,
-.phone-listing.ng-leave,
-.phone-listing.ng-move {
+.locations-listing.ng-enter,
+.locations-listing.ng-leave,
+.locations-listing.ng-move {
     -webkit-transition: 0.5s linear all;
     -moz-transition: 0.5s linear all;
     -o-transition: 0.5s linear all;
     transition: 0.5s linear all;
 }
 
-.phone-listing.ng-enter,
-.phone-listing.ng-move {
+.locations-listing.ng-enter,
+.locations-listing.ng-move {
     opacity: 0;
     height: 0;
     overflow: hidden;
 }
 
-.phone-listing.ng-move.ng-move-active,
-.phone-listing.ng-enter.ng-enter-active {
+.locations-listing.ng-move.ng-move-active,
+.locations-listing.ng-enter.ng-enter-active {
     opacity: 1;
-    height: 120px;
+    height: 30px;
 }
 
-.phone-listing.ng-leave {
+.locations-listing.ng-leave {
     opacity: 1;
     overflow: hidden;
 }
 
-.phone-listing.ng-leave.ng-leave-active {
+.locations-listing.ng-leave.ng-leave-active {
     opacity: 0;
     height: 0;
     padding-top: 0;
