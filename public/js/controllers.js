@@ -8,9 +8,25 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
         });
 
         $scope.locations = newArr;
+        $scope.headers = ['Name', 'City', 'Country', 'Address', 'Modified'];
     });
 
-    $scope.orderProp = 'name';
+    $scope.columnSort_sortColumn = 'date_modified';
+    $scope.columnSort_reverse = true;
+
+    $scope.reverseSort = function() {
+        $scope.columnSort_reverse = !$scope.columnSort_reverse;
+    };
+
+    $scope.setSortColumnOrJustReverse = function(columnName) {
+        var currSort = $scope.columnSort_sortColumn;
+        var newSort = columnName.toLowerCase();
+        if (newSort === 'address') newSort = 'formatted_address';
+        if (newSort === 'modified') newSort = 'date_modified';
+
+        if (currSort == newSort) $scope.reverseSort();
+        $scope.columnSort_sortColumn = newSort;
+    };
 }]);
 
 appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$http',

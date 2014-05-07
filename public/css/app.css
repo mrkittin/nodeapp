@@ -80,7 +80,7 @@ a:link {
 .phones li {
     clear: both;
     height: 25px;
-    padding-top: 10px;
+    padding-top: 0px;
 }
 
 /** Detail View **/

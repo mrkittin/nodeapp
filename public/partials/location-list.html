@@ -1,23 +1,45 @@
 <div class="float-left">
     Search: <input ng-model="query">
     <br>
-    Sort by:
-    <select ng-model="orderProp">
-        <option value="name">Alphabetical</option>
-        <option value="-date_modified">Newest</option>
-    </select>
-    <br>
-
     <p>Total number of locations: {{locations.length}}</p>
+    <!--<p>Sorted by: {{columnSort_sortColumn}}</p>-->
+    <!--<p>Reverse: {{columnSort_reverse}}</p>-->
 </div>
 
-<div class="float-left">
+<!--<div class="float-left" style="width: 40%">
     <ul class="phones">
         <li ng-repeat="location in locations | filter:query | orderBy:orderProp" class="thumbnail locations-listing">
             <a href="#/locations/{{location._id}}" class="thumb"><img height="25px" ng-src="{{location.imageUrl}}"></a>
             <a href="#/locations/{{location._id}}">{{location.name}}</a>
             {{location.city}} - {{location.country}} - {{location.formatted_address}}
-            <!--{{location.date_modified | date : 'dd.MM.yyyy @ HH:mm:ss'}}-->
+            {{location.date_modified | date : 'dd.MM.yyyy @ HH:mm:ss'}}
         </li>
     </ul>
+</div>-->
+
+<div class="float-left">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th ng-repeat="header in headers">
+                <a href="" ng-click="setSortColumnOrJustReverse(header);">
+                {{ header }}
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="location in locations | orderBy:columnSort_sortColumn:columnSort_reverse | filter:query" class="locations-listing">
+            <td> <a href="#/locations/{{location._id}}">{{ location.name }} </a></td>
+            <td>{{ location.city }}</td>
+            <td>{{ location.country }}</td>
+            <td>{{ location.formatted_address }}</td>
+            <td>{{ location.date_modified | date : 'dd.MM.yy' }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="float-left" style="border: 1px dotted; margin-left: 15px; width: 200px; height: 250px">
+Map will be here
 </div>
