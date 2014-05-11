@@ -16,6 +16,13 @@ appControllers.controller('stateCtrl', ['$rootScope', '$timeout',
                 $rootScope.showSuccessAlert = true;
             }, 500);
         });
+        $rootScope.$on('createEvent', function(event, data) {
+            $timeout(function () {
+                $rootScope.successTextAlert = "Created location with id: " + data.id;
+                $rootScope.showUndo = false;
+                $rootScope.showSuccessAlert = true;
+            }, 500);
+        });
         $rootScope.showUndoAlert = function() {
             $timeout(function () {
                 $rootScope.successTextAlert = "Not implemented yet";
