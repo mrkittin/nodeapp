@@ -7,32 +7,32 @@
         <legend style="color: #ccc">Editables</legend>
     <span class="float-left border1">
         <label>Name
-            <input class="border-dot margin-left-5" type="text" size="35" value="{{location.name}}">
+            <input class="border-dot margin-left-5" type="text" size="35" ng-model="location.name">
         </label>
     </span>
     <span class="float-left border1">
         <label>Latitude
-            <input class="border-dot margin-left-5" type="text" size="25" value="{{location.lat}}">
+            <input class="border-dot margin-left-5" type="text" size="25" ng-model="location.lat">
         </label>
     </span>
     <span class="float-left border1">
         <label>Longitude
-            <input class="border-dot margin-left-5" type="text" size="25" value="{{location.lng}}">
+            <input class="border-dot margin-left-5" type="text" size="25" ng-model="location.lng">
         </label>
     </span>
     <span class="float-left border1">
         <label>City
-            <input class="border-dot margin-left-5" type="text" size="35" value="{{location.city}}">
+            <input class="border-dot margin-left-5" type="text" size="35" ng-model="location.city">
         </label>
     </span>
     <span class="float-left border1">
         <label>Country
-            <input class="border-dot margin-left-5" type="text" size="30" value="{{location.country}}">
+            <input class="border-dot margin-left-5" type="text" size="30" ng-model="location.country">
         </label>
     </span>
     <span class="float-left border1">
         <label>Address
-            <input class="border-dot margin-left-5" type="text" size="40" value="{{location.formatted_address}}">
+            <input class="border-dot margin-left-5" type="text" size="40" ng-model="location.formatted_address">
         </label>
     </span>
     </fieldset>
@@ -42,7 +42,7 @@
         <legend style="color: #ccc">Description</legend>
     <span class="float-left border1">
             <textarea class="border-dot margin-left-5" style="vertical-align: middle; overflow: hidden; height: 30px;"
-                      rows="30" cols="30">{{location.description}}</textarea>
+                      rows="30" cols="30" ng-model="location.description"></textarea>
     </span>
     </fieldset>
     <fieldset class="float-left"
@@ -67,10 +67,10 @@
               style="display: table-column; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc;">
         <legend style="color: #ccc">Actions</legend>
     <span class="float-left">
-       <input class="margin-left-5" type="button" value="Destroy">
+       <input class="margin-left-5" type="button" value="Destroy" ng-click="delete()">
     </span>
     <span class="float-left">
-       <input class="margin-left-5" type="button" value="Save">
+       <input class="margin-left-5" type="button" value="Save" ng-click='update()'>
     </span>
     </fieldset>
 </form>

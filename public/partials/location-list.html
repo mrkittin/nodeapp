@@ -1,25 +1,26 @@
-<div class="float-left">
-    Search: <input ng-model="query">
-    <br>
-    <p>Total number of locations: {{locations.length}}</p>
-    <!--<p>Sorted by: {{columnSort_sortColumn}}</p>-->
-    <!--<p>Reverse: {{columnSort_reverse}}</p>-->
-</div>
-
-<!--<div class="float-left" style="width: 40%">
-    <ul class="phones">
-        <li ng-repeat="location in locations | filter:query | orderBy:orderProp" class="thumbnail locations-listing">
-            <a href="#/locations/{{location._id}}" class="thumb"><img height="25px" ng-src="{{location.imageUrl}}"></a>
-            <a href="#/locations/{{location._id}}">{{location.name}}</a>
-            {{location.city}} - {{location.country}} - {{location.formatted_address}}
-            {{location.date_modified | date : 'dd.MM.yyyy @ HH:mm:ss'}}
-        </li>
-    </ul>
-</div>-->
-
-<div class="float-left">
-    <table class="table table-hover">
-        <thead>
+<div class="float-left" style="margin-left: 5px">
+    <div style="border: 1px dotted rgb(149, 184, 231); padding: 5px">
+        <span>
+        Search: <input ng-model="query">
+        </span>
+        <span style="float: right">
+        Total locations: {{locations.length}}
+        </span>
+    </div>
+    <div style="border: 1px dotted rgb(149, 184, 231);  margin-top: 5px; height: 45px; line-height: 45px; vertical-align: middle; ">
+        <div style="display: inline; margin-left: 5px">
+        Actions
+        </div>
+        <div class="alert alert-success" ng-show="showSuccessAlert" style="display: inline-table; margin-bottom: 0px; padding: 5px; line-height: 24px;">
+            <button type="button" style="margin-left: 5px; margin-right: 5px" class="close" data-ng-click="hideAlert()">×</button>
+            <button type="button" style="margin-left: 5px; margin-right: 5px; float: right; line-height: 20px"
+                    ng-show="showUndo" data-ng-click="hideAlert();showUndoAlert();">Undo</button>
+            {{successTextAlert}}
+        </div>
+    </div>
+    <div style="border: 1px dotted rgb(149, 184, 231); padding: 5px; margin-top: 5px">
+    <table class="table table-hover" style="margin-bottom: 1px">
+        <thead style="background-color: rgba(232,232,232,0.32)">
         <tr>
             <th ng-repeat="header in headers">
                 <a href="" ng-click="setSortColumnOrJustReverse(header);">
@@ -38,8 +39,9 @@
         </tr>
         </tbody>
     </table>
+    </div>
 </div>
 
-<div class="float-left" style="border: 1px dotted; margin-left: 15px; width: 200px; height: 250px">
+<div class="float-left" style="border: 1px dotted rgb(149, 184, 231); margin-left: 15px; width: 400px; height: 350px">
 Map will be here
 </div>

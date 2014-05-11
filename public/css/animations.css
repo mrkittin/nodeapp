@@ -1,4 +1,32 @@
-/* animate ngRepeat in phone listing */
+/* animate status alert */
+
+.alert-success {
+    -webkit-transition:0.5s linear all;
+    transition:0.5s linear all;
+    opacity:1;
+}
+
+.alert-success.ng-hide {
+    opacity:0;
+}
+
+.alert-success.ng-hide-remove {
+    opacity:0;
+}
+
+.alert-success.ng-hide-remove-active {
+    opacity:1;
+}
+
+.alert-success.ng-hide-add,
+.alert-success.ng-hide-add-active,
+.alert-success.ng-hide-remove,
+.alert-success.ng-hide-remove-active
+{
+    display:inline-table!important;
+}
+
+/* animate ngRepeat in locations listing */
 
 .locations-listing.ng-enter,
 .locations-listing.ng-leave,

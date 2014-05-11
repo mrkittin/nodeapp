@@ -10,7 +10,8 @@
     "lodash": "~2.4.1",
     "mongoose": "~3.8.8",
     "bower": "~1.2.8",
-    "morgan": "~1.0.0"
+    "morgan": "~1.0.0",
+    "properties": "1.2.1"
   },
   "devDependencies": {},
   "scripts": {

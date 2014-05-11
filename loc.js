@@ -1,13 +1,21 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var properties = require ('properties');
 var ip_db = process.env.OPENSHIFT_MONGODB_DB_HOST || "localhost";
 var port_db = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
 
-var auth_options = {
-    user: 'admin_full',
-    pass: 'ZklsJ-GyWuCP',
-    auth: {authdb:'admin'}
-};
+var auth_options = {};
+
+properties.parse ("db_cred.properties", { path: true }, function (error, obj){
+    if (error) return console.error (error);
+        auth_options = {
+        user: obj.user,
+        pass: obj.pass,
+        auth: {authdb:'admin'}
+    };
+});
+
+
 
 if (ip_db === 'localhost') auth_options = {};
 
