@@ -4,6 +4,7 @@ var properties = require ('properties');
 var ip_db = process.env.OPENSHIFT_MONGODB_DB_HOST || "localhost";
 var port_db = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
 
+console.log(__dirname);
 var auth_options = {};
 
 properties.parse ("db_cred.properties", { path: true }, function (error, obj){
