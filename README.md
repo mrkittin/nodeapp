@@ -1,3 +1,4 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+Location management system
+==========================
 
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-nodejs/README.md
+Built on Javascript using MEAN stack components (but not MEAN stack itself).
