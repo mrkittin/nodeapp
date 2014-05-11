@@ -46,32 +46,23 @@
     </span>
     </fieldset>
     <fieldset class="float-left"
-              style="display: table-column; width: 50%; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc;">
+              style="display: table-column; width: 50%; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc; min-height: 82px">
         <legend style="color: #ccc">Images</legend>
+        Will be here
         <span ng-repeat="image in location.imageUrl" class="float-left margin-left-5">
             <a href="#/locations/{{location._id}}/fullImage/{{$index}}">
-            <img height="60px" ng-src="{{image}}" style="border: 1px solid">
+                <img height="60px" ng-src="{{image}}" style="border: 1px solid">
             </a>
         </span>
     </fieldset>
+
     <fieldset class="float-left"
-              style="display: table-column; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc;">
-        <legend style="color: #ccc">Statuses</legend>
-        <span class="float-left">
-        <label style="margin-left: 5px">Last Modified
-            <input class="border-dot margin-left-5" type="text" disabled size="30" value="{{location.date_modified}}">
-        </label>
-    </span>
-    </fieldset>
-    <fieldset class="float-left"
-              style="display: table-column; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc;">
+              style="display: table-column; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc; min-height: 82px">
         <legend style="color: #ccc">Actions</legend>
-    <span class="float-left">
-       <input class="margin-left-5" type="button" value="Destroy" ng-click="delete()">
-    </span>
     <span class="float-left">
        <input class="margin-left-5" type="button" value="Save" ng-click='update()' ng-show="addForm.$valid">
     </span>
+
     </fieldset>
     <fieldset class="float-left" ng-show="addForm.$invalid"
               style="display: table-column; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc;">

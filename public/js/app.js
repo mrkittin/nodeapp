@@ -3,11 +3,11 @@ var nodeApp = angular.module('nodeApp', ['ngRoute', 'appControllers', 'locations
 nodeApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/locations', {
+            when('/locations/list', {
                 templateUrl: 'partials/location-list.html',
                 controller: 'locationListCtrl'
             }).
-            when('/locations/:locationId', {
+            when('/locations/:locationId/edit', {
                 templateUrl: 'partials/location-detail.html',
                 controller: 'locationDetailCtrl'
             }).
@@ -15,7 +15,11 @@ nodeApp.config(['$routeProvider',
                 templateUrl: 'partials/location-detail-fullImage.html',
                 controller: 'locationDetailCtrl'
             }).
+            when('/locations/add', {
+                templateUrl: 'partials/location-add.html',
+                controller: 'locationAddCtrl'
+            }).
             otherwise({
-                redirectTo: '/locations'
+                redirectTo: '/locations/list'
             });
     }]);

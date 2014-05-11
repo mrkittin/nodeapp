@@ -65,9 +65,9 @@ app.route('/api/locations')
     })
     .post(function(req, res, next) {
         var location;
-        console.log(req.body);
         location = new Location(req.body);
-        location.save(function (err, location) {
+        var newLocation = _.extend(location, { 'date_modified': getDateTzo() });
+        newLocation.save(function (err, location) {
             if (!err) {
                 console.log("created");
                 return res.json(location);
@@ -92,10 +92,8 @@ app.route('/api/locations/:id')
         return Location.findById(req.params.id, function (err, location) {
             if (!err && location) {
                 var newLocation = _.extend(location, req.body);
-                var d = new Date();
-                var tzo = (d.getTimezoneOffset()/60)*(-1);
-                d.setHours(d.getHours() + tzo);
-                newLocation = _.extend(newLocation, { 'date_modified': d });
+
+                newLocation = _.extend(newLocation, { 'date_modified': getDateTzo() });
                 return newLocation.save(function (err, location) {
                     if (!err) {
                         console.log("updated");
@@ -126,6 +124,12 @@ app.route('/api/locations/:id')
         });
     });
 
+function getDateTzo() {
+    var d = new Date();
+    var tzo = (d.getTimezoneOffset()/60)*(-1);
+    d.setHours(d.getHours() + tzo);
+    return d;
+}
 
 // Start the server.
 var port = process.env.OPENSHIFT_NODEJS_PORT || 4242;

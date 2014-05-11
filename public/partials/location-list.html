@@ -4,6 +4,10 @@
         Search: <input ng-model="query">
         </span>
         <span style="float: right">
+            <a href="#/locations/add">
+            <button type="button" style="margin-left: 5px; margin-right: 5px">Add new</button></a>
+        </span>
+        <span style="float: right">
         Total locations: {{locations.length}}
         </span>
     </div>
@@ -31,7 +35,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="location in locations | orderBy:columnSort_sortColumn:columnSort_reverse | filter:query" class="locations-listing">
-            <td> <a href="#/locations/{{location._id}}">{{ location.name }} </a></td>
+            <td> <a href="#/locations/{{location._id}}/edit">{{ location.name }} </a></td>
             <td>{{ location.city }}</td>
             <td>{{ location.country }}</td>
             <td>{{ location.formatted_address }}</td>

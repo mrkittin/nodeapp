@@ -91,3 +91,19 @@ appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$htt
         };
     }]);
 
+appControllers.controller('locationAddCtrl', ['$scope', '$http', '$location',
+    function ($scope, $http, $location) {
+        $scope.location = {};
+
+        $scope.update = function () {
+            $http.post('api/locations/', $scope.location).
+                success(function(data) {
+                    console.log(data);
+                    $location.path('/');
+                    $scope.$root.$broadcast('createEvent', {
+                        'id': data._id
+                    });
+                });
+        };
+    }]);
+
