@@ -5,23 +5,27 @@ var ip_db = process.env.OPENSHIFT_MONGODB_DB_HOST || "localhost";
 var port_db = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
 
 console.log(__dirname);
-var auth_options = {};
 
-properties.parse ("../../data/db_pr/db_cred.properties", { path: true }, function (error, obj){
+var db_file = ip_db === 'localhost' ? "db_cred.properties" : "../../data/db_pr/db_cred.properties";
+
+properties.parse (db_file, { path: true }, function (error, obj){
     console.log(obj);
     if (error) return console.error (error);
-        auth_options = {
+    var auth_options = {
         user: obj.user,
         pass: obj.pass,
         auth: {authdb:'admin'}
     };
+    console.log(auth_options);
+    if (ip_db === 'localhost') auth_options = {};
+    mongoose.connect('mongodb://' + ip_db + ':' + port_db + '/nodeapp', auth_options);
 });
 
-console.log(auth_options);
 
-if (ip_db === 'localhost') auth_options = {};
 
-mongoose.connect('mongodb://' + ip_db + ':' + port_db + '/nodeapp', auth_options);
+
+
+
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
