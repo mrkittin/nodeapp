@@ -7,7 +7,7 @@ var port_db = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
 console.log(__dirname);
 var auth_options = {};
 
-properties.parse ("db_cred.properties", { path: true }, function (error, obj){
+properties.parse ("../../data/db_pr/db_cred.properties", { path: true }, function (error, obj){
     console.log(obj);
     if (error) return console.error (error);
         auth_options = {
