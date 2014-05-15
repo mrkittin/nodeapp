@@ -4,21 +4,21 @@ appControllers.controller('stateCtrl', ['$rootScope', '$timeout',
     function ($rootScope, $timeout) {
         $rootScope.$on('deleteEvent', function(event, data) {
             $timeout(function () {
-                $rootScope.successTextAlert = "Deleted location with id: " + data.id;
+                $rootScope.successTextAlert = "Deleted location with name: " + data.name;
                 $rootScope.showUndo = true;
                 $rootScope.showSuccessAlert = true;
             }, 500);
         });
         $rootScope.$on('updateEvent', function(event, data) {
             $timeout(function () {
-                $rootScope.successTextAlert = "Updated location with id: " + data.id;
+                $rootScope.successTextAlert = "Updated location with name: " + data.name;
                 $rootScope.showUndo = true;
                 $rootScope.showSuccessAlert = true;
             }, 500);
         });
         $rootScope.$on('createEvent', function(event, data) {
             $timeout(function () {
-                $rootScope.successTextAlert = "Created location with id: " + data.id;
+                $rootScope.successTextAlert = "Created location with name: " + data.name;
                 $rootScope.showUndo = false;
                 $rootScope.showSuccessAlert = true;
             }, 500);
@@ -81,7 +81,8 @@ appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$htt
                 success(function(data) {
                     $location.path('/');
                     $rootScope.$broadcast('deleteEvent', {
-                        'id': $routeParams.locationId
+                        'id': $routeParams.locationId,
+                        'name': data.name
                     });
 
                 });
@@ -92,7 +93,8 @@ appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$htt
                 success(function(data) {
                     $location.path('/');
                     $rootScope.$broadcast('updateEvent', {
-                        'id': $routeParams.locationId
+                        'id': $routeParams.locationId,
+                        'name': data.name
                     });
                 });
         };
@@ -102,13 +104,13 @@ appControllers.controller('locationAddCtrl', ['$scope', '$http', '$location',
     function ($scope, $http, $location) {
         $scope.location = {};
 
-        $scope.update = function () {
+        $scope.create = function () {
             $http.post('api/locations/', $scope.location).
                 success(function(data) {
-                    console.log(data);
                     $location.path('/');
                     $scope.$root.$broadcast('createEvent', {
-                        'id': data._id
+                        'id': data._id,
+                        'name': data.name
                     });
                 });
         };

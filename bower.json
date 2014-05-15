@@ -12,6 +12,7 @@
         "angular-bootstrap": "0.10.0",
         "angular-ui-router": "#master",
         "jquery": "1.11.1",
+        "jquery-geocomplete" : "latest",
         "angular-animate" : "latest"
     }
 }

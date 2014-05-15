@@ -111,10 +111,11 @@ app.route('/api/locations/:id')
     .delete(function(req, res, next) {
         return Location.findById(req.params.id, function (err, location) {
             if (!err && location) {
+                var name = location.name;
                 return location.remove(function (err) {
                     if (!err) {
                         console.log("removed");
-                        return res.send('removed');
+                        return res.send({'status':'removed', 'name':name});
                     } else return console.log(err);
                 })
             } else {
