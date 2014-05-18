@@ -1,7 +1,10 @@
 <span style="border: 1px dotted #000000; padding: 2px">
     <a class="nounderline" style="color: red" href="#/locations/list">GO BACK</a>
 </span>
-<form style="margin-top: 5px" name="addForm">
+<form style="margin-top: 5px" name="addForm" id="addForm">
+    <div class="border1" style="display: table">
+        <input class="border-dot margin-left-5" type="text" size="60" placeholder="Search for location" geoselect>
+    </div>
     <fieldset class="float-left"
               style="display: table-column; width: 70%; margin-top:3px; margin-bottom:3px; border: 1px dotted #cccccc;">
         <legend style="color: #ccc">Editables</legend>
@@ -12,27 +15,27 @@
     </span>
     <span class="float-left border1">
         <label>Latitude
-            <input class="border-dot margin-left-5" type="text" size="25" ng-model="location.lat">
+            <input class="border-dot margin-left-5" type="text" size="25" ng-model="location.lat" data-geo="lat">
         </label>
     </span>
     <span class="float-left border1">
         <label>Longitude
-            <input class="border-dot margin-left-5" type="text" size="25" ng-model="location.lng">
+            <input class="border-dot margin-left-5" type="text" size="25" ng-model="location.lng" data-geo="lng">
         </label>
     </span>
     <span class="float-left border1">
         <label>City
-            <input class="border-dot margin-left-5" type="text" size="35" ng-model="location.city">
+            <input class="border-dot margin-left-5" type="text" size="35" ng-model="location.city" data-geo="locality">
         </label>
     </span>
     <span class="float-left border1">
         <label>Country
-            <input class="border-dot margin-left-5" type="text" size="30" ng-model="location.country">
+            <input class="border-dot margin-left-5" type="text" size="30" ng-model="location.country" data-geo="country">
         </label>
     </span>
     <span class="float-left border1">
         <label>Address
-            <input class="border-dot margin-left-5" type="text" size="40" ng-model="location.formatted_address">
+            <input class="border-dot margin-left-5" type="text" size="40" ng-model="location.formatted_address" data-geo="formatted_address">
         </label>
     </span>
     </fieldset>
@@ -71,4 +74,9 @@
         <p ng-show="addForm.locName.$invalid" style="color: red">Name should be at least 3 symbols</p>
     </span>
     </fieldset>
+    <fieldset style="clear: both">
+        <div id="geo_map" style="border: 1px dotted rgb(149, 184, 231); margin-left: 5px; margin-top: 5px; width: 500px; height: 350px">
+        </div>
+    </fieldset>
 </form>
+

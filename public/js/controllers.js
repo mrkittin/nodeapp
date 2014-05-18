@@ -1,5 +1,18 @@
 var appControllers = angular.module('appControllers', []);
 
+appControllers.directive('geoselect', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attr) {
+            element.geocomplete({
+                map: "#geo_map",
+                details: "#addForm",
+                detailsAttribute: "data-geo"
+            });
+        }
+    }
+});
+
 appControllers.controller('stateCtrl', ['$rootScope', '$timeout',
     function ($rootScope, $timeout) {
         $rootScope.$on('deleteEvent', function(event, data) {
@@ -105,6 +118,7 @@ appControllers.controller('locationAddCtrl', ['$scope', '$http', '$location',
         $scope.location = {};
 
         $scope.create = function () {
+            angular.element('input[data-geo]').trigger('input');
             $http.post('api/locations/', $scope.location).
                 success(function(data) {
                     $location.path('/');
