@@ -7,8 +7,19 @@ appControllers.directive('geoselect', function() {
             element.geocomplete({
                 map: "#geo_map",
                 details: "#addForm",
-                detailsAttribute: "data-geo"
-            });
+                detailsAttribute: "data-geo",
+                markerOptions: {
+                    draggable: true
+                }
+            })
+            .on("geocode:dragged", function(event, latLng){
+                    angular.element('input[data-geo=lat]').val(latLng.lat());
+                    angular.element('input[data-geo=lng]').val(latLng.lng());
+            })
+            .on("geocode:zoom", function(event, zoom){
+                    angular.element('input[name=zoom]').val(zoom);
+                });
+            var map = element.geocomplete("map");
         }
     }
 });
