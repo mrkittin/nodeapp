@@ -18,8 +18,15 @@ appControllers.directive('geoselect', function() {
             })
             .on("geocode:zoom", function(event, zoom){
                     angular.element('input[name=zoom]').val(zoom);
-                });
+                })
+            .on("updateMapEvent", function(event, params){
+                    var latlng = new google.maps.LatLng(parseFloat(params.lat), parseFloat(params.lng));
+                    map.setCenter(latlng);
+                    map.setZoom(parseInt(params.zoom));
+            });
+
             var map = element.geocomplete("map");
+
         }
     }
 });
@@ -92,12 +99,15 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
 
     }]);
 
-appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope',
-    function ($scope, $routeParams, $http, $location, $rootScope) {
+appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', '$timeout',
+    function ($scope, $routeParams, $http, $location, $rootScope, $timeout) {
         $http.get('api/locations/' + $routeParams.locationId ).success(function(data) {
             var newData = _.extend({}, data, {imageUrl: ['img/location.jpg', 'img/location2.jpg', 'img/location3.jpg']});
             $scope.location = newData;
             $scope.imgIndex = $routeParams.imgIndex;
+
+            angular.element('input[geoselect]').triggerHandler('updateMapEvent',
+                {'lat':newData.lat, 'lng':newData.lng, 'zoom':newData.zoom})
         });
 
         $scope.delete = function() {
