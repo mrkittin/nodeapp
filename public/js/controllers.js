@@ -13,20 +13,32 @@ appControllers.directive('geoselect', function() {
                 }
             })
             .on("geocode:dragged", function(event, latLng){
-                    angular.element('input[data-geo=lat]').val(latLng.lat());
-                    angular.element('input[data-geo=lng]').val(latLng.lng());
+                    updateLatLng(latLng.lat(), latLng.lng());
             })
             .on("geocode:zoom", function(event, zoom){
                     angular.element('input[name=zoom]').val(zoom);
                 })
             .on("updateMapEvent", function(event, params){
                     var latlng = new google.maps.LatLng(parseFloat(params.lat), parseFloat(params.lng));
-                    map.setCenter(latlng);
-                    map.setZoom(parseInt(params.zoom));
+                    if (latlng) map.setCenter(latlng);
+                    if (parseInt(params.zoom) >= 0) map.setZoom(parseInt(params.zoom));
+                    var myMarker = new google.maps.Marker({
+                        map: map,
+                        position: latlng,
+                        draggable: true,
+                        animation: google.maps.Animation.DROP
+                    });
+                    google.maps.event.addListener(myMarker,'dragend',function(event) {
+                        updateLatLng(event.latLng.lat(), event.latLng.lng());
+                    });
             });
 
             var map = element.geocomplete("map");
 
+            function updateLatLng(lat, lng) {
+                angular.element('input[data-geo=lat]').val(lat);
+                angular.element('input[data-geo=lng]').val(lng);
+            }
         }
     }
 });
@@ -99,8 +111,8 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
 
     }]);
 
-appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', '$timeout',
-    function ($scope, $routeParams, $http, $location, $rootScope, $timeout) {
+appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope',
+    function ($scope, $routeParams, $http, $location, $rootScope) {
         $http.get('api/locations/' + $routeParams.locationId ).success(function(data) {
             var newData = _.extend({}, data, {imageUrl: ['img/location.jpg', 'img/location2.jpg', 'img/location3.jpg']});
             $scope.location = newData;
@@ -123,6 +135,7 @@ appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$htt
         };
 
         $scope.update = function () {
+            angular.element('input[data-geo]').trigger('input');
             $http.put('api/locations/' + $routeParams.locationId, $scope.location).
                 success(function(data) {
                     $location.path('/');

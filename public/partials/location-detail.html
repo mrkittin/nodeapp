@@ -1,7 +1,7 @@
 <span style="border: 1px dotted #000000; padding: 2px">
     <a class="nounderline" style="color: red" href="#/locations/list">GO BACK</a>
 </span>
-<form style="margin-top: 5px" name="addForm">
+<form style="margin-top: 5px" name="addForm" id="addForm">
     <div class="border1" style="display: table">
         <input class="border-dot margin-left-5" type="text" size="60" placeholder="Search for location" geoselect>
     </div>
@@ -25,17 +25,17 @@
     </span>
     <span class="float-left border1">
         <label>City
-            <input class="border-dot margin-left-5" type="text" size="35" ng-model="location.city">
+            <input class="border-dot margin-left-5" type="text" size="35" ng-model="location.city" data-geo="locality">
         </label>
     </span>
     <span class="float-left border1">
         <label>Country
-            <input class="border-dot margin-left-5" type="text" size="30" ng-model="location.country">
+            <input class="border-dot margin-left-5" type="text" size="30" ng-model="location.country" data-geo="country">
         </label>
     </span>
     <span class="float-left border1">
         <label>Address
-            <input class="border-dot margin-left-5" type="text" size="40" ng-model="location.formatted_address">
+            <input class="border-dot margin-left-5" type="text" size="40" ng-model="location.formatted_address" data-geo="formatted_address">
         </label>
     </span>
     <span class="float-left border1">
