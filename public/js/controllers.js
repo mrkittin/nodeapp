@@ -82,6 +82,7 @@ appControllers.controller('stateCtrl', ['$rootScope', '$timeout',
 
 appControllers.controller('locationListCtrl', ['$scope', '$http',
     function ($scope, $http) {
+        $scope.$root.pageTitle = 'Locations';
         $scope.$root.hideAlert();
         $http.get('api/locations').success(function(data) {
             var newArr = _.map(data, function(element) {
@@ -119,7 +120,8 @@ appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$htt
             $scope.imgIndex = $routeParams.imgIndex;
 
             angular.element('input[geoselect]').triggerHandler('updateMapEvent',
-                {'lat':newData.lat, 'lng':newData.lng, 'zoom':newData.zoom})
+                {'lat':newData.lat, 'lng':newData.lng, 'zoom':newData.zoom});
+            $rootScope.pageTitle = newData.name;
         });
 
         $scope.delete = function() {
@@ -149,6 +151,7 @@ appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$htt
 
 appControllers.controller('locationAddCtrl', ['$scope', '$http', '$location',
     function ($scope, $http, $location) {
+        $scope.$root.pageTitle = 'Add location';
         $scope.location = {};
 
         $scope.create = function () {
