@@ -82,6 +82,8 @@ appControllers.controller('stateCtrl', ['$rootScope', '$timeout',
 
 appControllers.controller('locationListCtrl', ['$scope', '$http',
     function ($scope, $http) {
+        var locations = [];
+        var selectedLoc = {};
         $scope.$root.pageTitle = 'Locations';
         $scope.$root.hideAlert();
         $http.get('api/locations').success(function(data) {
@@ -90,7 +92,9 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
             });
 
             $scope.locations = newArr;
+            locations = newArr;
             $scope.headers = ['Name', 'City', 'Country', 'Address', 'Modified'];
+            initMap();
         });
 
         $scope.columnSort_sortColumn = 'date_modified';
@@ -109,6 +113,33 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
             if (currSort == newSort) $scope.reverseSort();
             $scope.columnSort_sortColumn = newSort;
         };
+
+        $scope.updateMap = function(location) {
+            selectedLoc = location;
+            updateMap(selectedLoc);
+        };
+
+        var latlng;
+        var map;
+
+        function initMap() {
+            latlng = new google.maps.LatLng(1,1);
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                streetViewControl: false,
+                mapTypeControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map"),
+                myOptions);
+        }
+
+        function updateMap(location) {
+            latlng = new google.maps.LatLng(parseFloat(location.lat), parseFloat(location.lng));
+            if (latlng) map.setCenter(latlng);
+            if (parseInt(location.zoom) >= 0) map.setZoom(parseInt(location.zoom));
+        }
 
     }]);
 

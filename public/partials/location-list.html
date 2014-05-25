@@ -34,7 +34,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="location in locations | orderBy:columnSort_sortColumn:columnSort_reverse | filter:query" class="locations-listing">
+        <tr ng-repeat="location in locations | orderBy:columnSort_sortColumn:columnSort_reverse | filter:query"
+            class="locations-listing" ng-click="updateMap(location)">
             <td> <a href="#/locations/{{location._id}}/edit">{{ location.name }} </a></td>
             <td>{{ location.city }}</td>
             <td>{{ location.country }}</td>
@@ -46,6 +47,4 @@
     </div>
 </div>
 
-<div class="float-left" style="border: 1px dotted rgb(149, 184, 231); margin-left: 15px; width: 400px; height: 350px">
-Map will be here
-</div>
+<div class="float-left" style="border: 1px dotted rgb(149, 184, 231); margin-left: 15px; width: 400px; height: 350px" id="map"></div>
