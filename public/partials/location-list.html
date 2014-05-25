@@ -35,7 +35,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="location in locations | orderBy:columnSort_sortColumn:columnSort_reverse | filter:query"
-            class="locations-listing" ng-click="updateMap(location)">
+            class="locations-listing" ng-click="updateMap(location)" ng-class="{tr_selected: selectedLoc.name == location.name}">
             <td> <a href="#/locations/{{location._id}}/edit">{{ location.name }} </a></td>
             <td>{{ location.city }}</td>
             <td>{{ location.country }}</td>

@@ -82,8 +82,6 @@ appControllers.controller('stateCtrl', ['$rootScope', '$timeout',
 
 appControllers.controller('locationListCtrl', ['$scope', '$http',
     function ($scope, $http) {
-        var locations = [];
-        var selectedLoc = {};
         $scope.$root.pageTitle = 'Locations';
         $scope.$root.hideAlert();
         $http.get('api/locations').success(function(data) {
@@ -92,9 +90,8 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
             });
 
             $scope.locations = newArr;
-            locations = newArr;
             $scope.headers = ['Name', 'City', 'Country', 'Address', 'Modified'];
-            initMap();
+            initMap(); updateMap($scope.$root.selectedLoc);
         });
 
         $scope.columnSort_sortColumn = 'date_modified';
@@ -115,8 +112,8 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
         };
 
         $scope.updateMap = function(location) {
-            selectedLoc = location;
-            updateMap(selectedLoc);
+            $scope.$root.selectedLoc = location;
+            updateMap($scope.$root.selectedLoc);
         };
 
         var latlng;
@@ -136,6 +133,7 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
         }
 
         function updateMap(location) {
+            if (!location) return;
             latlng = new google.maps.LatLng(parseFloat(location.lat), parseFloat(location.lng));
             if (latlng) map.setCenter(latlng);
             if (parseInt(location.zoom) >= 0) map.setZoom(parseInt(location.zoom));

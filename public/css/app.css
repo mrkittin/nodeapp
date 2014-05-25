@@ -14,6 +14,9 @@ a:link {
     color: #000000;
 }
 
+.tr_selected {
+    background-color: #ffff00;
+}
 
 .phone-images {
     background-color: white;
