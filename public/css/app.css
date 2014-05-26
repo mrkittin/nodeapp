@@ -2,6 +2,21 @@ body {
     padding-top: 10px;
 }
 
+#pagewrap {
+    width: 980px;
+    margin: 0 auto;
+}
+
+#content {
+    width: 600px;
+    float: left;
+}
+#sidebar {
+    width: 370px;
+    float: right;
+}
+
+
 a.nounderline:link {
     text-decoration:none;
 }

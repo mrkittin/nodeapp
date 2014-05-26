@@ -1,0 +1,36 @@
+@media screen and (max-width: 980px) {
+    #pagewrap {
+        width: 99%;
+    }
+    #content {
+        width: 64%;
+    }
+    #sidebar {
+        width: 35%;
+    }
+    #sidebar .widget {
+        margin-bottom: 10px;
+    }
+}
+
+
+@media screen and (max-width: 750px) {
+
+    #content {
+        width: auto;
+        float: none;
+        margin: 10px 0;
+        font-size: 160%;
+    }
+    #sidebar {
+        width: 100%;
+        float: none;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        -webkit-text-size-adjust: none;
+    }
+}

@@ -1,50 +1,55 @@
-<div class="float-left" style="margin-left: 5px">
-    <div style="border: 1px dotted rgb(149, 184, 231); padding: 5px">
+<div id="pagewrap">
+    <div id="content">
+        <div style="border: 1px dotted rgb(149, 184, 231); padding: 5px">
         <span>
         Search: <input ng-model="query">
         </span>
         <span style="float: right">
             <a href="#/locations/add">
-            <button type="button" style="margin-left: 5px; margin-right: 5px">Add new</button></a>
+                <button type="button" style="margin-left: 5px; margin-right: 5px">Add new</button></a>
         </span>
         <span style="float: right">
         Total locations: {{locations.length}}
         </span>
-    </div>
-    <div style="border: 1px dotted rgb(149, 184, 231);  margin-top: 5px; height: 45px; line-height: 45px; vertical-align: middle; ">
-        <div style="display: inline; margin-left: 5px">
-        Actions
         </div>
-        <div class="alert alert-success" ng-show="showSuccessAlert" style="display: inline-table; margin-bottom: 0px; padding: 5px; line-height: 24px;">
-            <button type="button" style="margin-left: 5px; margin-right: 5px" class="close" data-ng-click="hideAlert()">×</button>
-            <button type="button" style="margin-left: 5px; margin-right: 5px; float: right; line-height: 20px"
-                    ng-show="showUndo" data-ng-click="hideAlert();showUndoAlert();">Undo</button>
-            {{successTextAlert}}
+        <div style="border: 1px dotted rgb(149, 184, 231);  margin-top: 5px; height: 45px; line-height: 45px; vertical-align: middle; ">
+            <div style="display: inline; margin-left: 5px">
+                Actions
+            </div>
+            <div class="alert alert-success" ng-show="showSuccessAlert" style="display: inline-table; margin-bottom: 0px; padding: 5px; line-height: 24px;">
+                <button type="button" style="margin-left: 5px; margin-right: 5px" class="close" data-ng-click="hideAlert()">×</button>
+                <button type="button" style="margin-left: 5px; margin-right: 5px; float: right; line-height: 20px"
+                        ng-show="showUndo" data-ng-click="hideAlert();showUndoAlert();">Undo</button>
+                {{successTextAlert}}
+            </div>
+        </div>
+        <div style="border: 1px dotted rgb(149, 184, 231); padding: 5px; margin-top: 5px;">
+            <table class="table table-hover" style="margin-bottom: 1px">
+                <thead style="background-color: rgba(232,232,232,0.32)">
+                <tr>
+                    <th ng-repeat="header in headers">
+                        <a href="" ng-click="setSortColumnOrJustReverse(header);">
+                            {{ header }}
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="location in locations | orderBy:columnSort_sortColumn:columnSort_reverse | filter:query"
+                    class="locations-listing" ng-click="updateMap(location)" ng-class="{tr_selected: selectedLoc.name == location.name}">
+                    <td> <a href="#/locations/{{location._id}}/edit">{{ location.name }} </a></td>
+                    <td>{{ location.city }}</td>
+                    <td>{{ location.country }}</td>
+                    <td>{{ location.formatted_address }}</td>
+                    <td>{{ location.date_modified | date : 'dd.MM.yy' }}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div style="border: 1px dotted rgb(149, 184, 231); padding: 5px; margin-top: 5px">
-    <table class="table table-hover" style="margin-bottom: 1px">
-        <thead style="background-color: rgba(232,232,232,0.32)">
-        <tr>
-            <th ng-repeat="header in headers">
-                <a href="" ng-click="setSortColumnOrJustReverse(header);">
-                {{ header }}
-                </a>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="location in locations | orderBy:columnSort_sortColumn:columnSort_reverse | filter:query"
-            class="locations-listing" ng-click="updateMap(location)" ng-class="{tr_selected: selectedLoc.name == location.name}">
-            <td> <a href="#/locations/{{location._id}}/edit">{{ location.name }} </a></td>
-            <td>{{ location.city }}</td>
-            <td>{{ location.country }}</td>
-            <td>{{ location.formatted_address }}</td>
-            <td>{{ location.date_modified | date : 'dd.MM.yy' }}</td>
-        </tr>
-        </tbody>
-    </table>
-    </div>
+    <aside id="sidebar">
+        <section class="widget" style="width: auto; height: 350px">
+            <div style="border: 1px dotted rgb(149, 184, 231); width: inherit; height: inherit" id="map" ng-show="true"></div>
+        </section>
+    </aside>
 </div>
-
-<div class="float-left" style="border: 1px dotted rgb(149, 184, 231); margin-left: 15px; width: 400px; height: 350px" id="map"></div>

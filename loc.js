@@ -133,7 +133,7 @@ function getDateTzo() {
 }
 
 // Start the server.
-var port = process.env.OPENSHIFT_NODEJS_PORT || 4242;
-var ip = process.env.OPENSHIFT_NODEJS_IP || "localhost";
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var ip = process.env.OPENSHIFT_NODEJS_IP || "";
 app.listen(port, ip);
-console.log('Listening on some port...');
+console.log('Listening on port ' + port);
