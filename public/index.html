@@ -5,8 +5,17 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/animations.css">
     <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
-    <!-- disable iPhone inital scale -->
-    <meta name="viewport" content="width=750, initial-scale=0.43">
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript">
+        if(window.innerWidth < 750) {
+            viewport = document.querySelector("meta[name=viewport]");
+            viewport.setAttribute('content', 'width=750');
+        }
+        if(window.innerWidth > 750) {
+            viewport = document.querySelector("meta[name=viewport]");
+            viewport.setAttribute('content', 'width=1024');
+        }
+    </script>
     <link href="css/media-queries.css" rel="stylesheet" type="text/css">
 </head>
 <script src="lib/jquery/dist/jquery.min.js"></script>

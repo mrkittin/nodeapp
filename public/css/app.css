@@ -1,3 +1,8 @@
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
 body {
     padding-top: 10px;
 }
@@ -10,6 +15,7 @@ body {
 #content {
     width: 600px;
     float: left;
+    /*font-size: 120%;*/
 }
 #sidebar {
     width: 370px;

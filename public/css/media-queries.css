@@ -1,3 +1,10 @@
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-resolution: 2dppx) {
+     /*Retina-specific stuff here */
+
+}
+
 @media screen and (max-width: 980px) {
     #pagewrap {
         width: 99%;
