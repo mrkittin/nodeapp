@@ -13,6 +13,7 @@
         "angular-ui-router": "#master",
         "jquery": "1.11.1",
         "jquery-geocomplete" : "latest",
-        "angular-animate" : "latest"
+        "angular-animate" : "latest",
+        "fastclick" : "latest"
     }
 }
