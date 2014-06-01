@@ -1,17 +1,79 @@
 <div id="pagewrap">
     <div id="content">
-        <div style="border: 1px dotted rgb(149, 184, 231); padding: 5px">
-        <span>
-        Search: <input ng-model="query">
-        </span>
-        <span style="float: right">
-            <a href="#/locations/add">
-                <button type="button" style="margin-left: 5px; margin-right: 5px">Add new</button></a>
-        </span>
-        <span style="float: right">
-        Total locations: {{locations.length}}
-        </span>
-        </div>
+
+        <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 5px">
+
+            <div class="container-fluid">
+                <!--Total locations: {{locations.length}}-->
+                <!--<div id="controls" style="border: 1px dotted rgb(149, 184, 231); padding: 5px">-->
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<a class="navbar-brand" href="#">Brand</a>-->
+
+                    <a href="#/locations/add" style="text-decoration: none">
+                        <button type="button" class="btn btn-primary navbar-btn">Add new</button>
+                    </a>
+
+                    <span class="navbar-text" style="float: none">Total locations: {{locations.length}}</span>
+
+                    <form class="navbar-form" role="search" style="display: inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search" ng-model="query">
+                        </div>
+                        <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                    </form>
+
+                    <!--<ul class="nav navbar-nav navbar-right">-->
+
+                        <!--<li>-->
+                            <!--<a href="#/locations/add">-->
+                                <!--<button type="button" class="btn btn-primary" style="margin-left: 5px; margin-right: 5px;">Add new</button>-->
+                            <!--</a>-->
+                        <!--</li>-->
+
+                        <!--<li>Total locations: {{locations.length}}</li>-->
+                    <!--</ul>-->
+
+                </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <!--<ul class="nav navbar-nav">-->
+                        <!--</ul>-->
+
+
+
+
+
+
+
+
+                            <!--<span>-->
+                            <!--Search: <input ng-model="query">-->
+                            <!--</span>-->
+                            <!--<span style="float: right">-->
+                                <!--<a href="#/locations/add">-->
+                                    <!--<button type="button" class="btn btn-primary" style="margin-left: 5px; margin-right: 5px;">Add new</button></a>-->
+                            <!--</span>-->
+                            <!--<span style="float: right" class="panel panel-default">-->
+                            <!--Total locations: {{locations.length}}-->
+                            <!--</span>-->
+
+
+                    </div>
+                <!--</div>-->
+
+            </div>
+        </nav>
+
+
         <div style="border: 1px dotted rgb(149, 184, 231);  margin-top: 5px; height: 45px; line-height: 45px; vertical-align: middle; ">
             <div style="display: inline; margin-left: 5px;">
                 Actions
