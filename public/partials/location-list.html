@@ -4,9 +4,6 @@
         <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 5px">
 
             <div class="container-fluid">
-                <!--Total locations: {{locations.length}}-->
-                <!--<div id="controls" style="border: 1px dotted rgb(149, 184, 231); padding: 5px">-->
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
 
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -30,43 +27,11 @@
                         <!--<button type="submit" class="btn btn-default">Submit</button>-->
                     </form>
 
-                    <!--<ul class="nav navbar-nav navbar-right">-->
-
-                        <!--<li>-->
-                            <!--<a href="#/locations/add">-->
-                                <!--<button type="button" class="btn btn-primary" style="margin-left: 5px; margin-right: 5px;">Add new</button>-->
-                            <!--</a>-->
-                        <!--</li>-->
-
-                        <!--<li>Total locations: {{locations.length}}</li>-->
-                    <!--</ul>-->
-
                 </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <!--<ul class="nav navbar-nav">-->
-                        <!--</ul>-->
 
-
-
-
-
-
-
-
-                            <!--<span>-->
-                            <!--Search: <input ng-model="query">-->
-                            <!--</span>-->
-                            <!--<span style="float: right">-->
-                                <!--<a href="#/locations/add">-->
-                                    <!--<button type="button" class="btn btn-primary" style="margin-left: 5px; margin-right: 5px;">Add new</button></a>-->
-                            <!--</span>-->
-                            <!--<span style="float: right" class="panel panel-default">-->
-                            <!--Total locations: {{locations.length}}-->
-                            <!--</span>-->
-
-
+                    <!--To be added-->
                     </div>
                 <!--</div>-->
 
@@ -79,7 +44,7 @@
                 Actions
             </div>
             <div class="alert alert-success" ng-show="showSuccessAlert" style="display: inline-table; margin-bottom: 0px; padding: 5px; line-height: 24px;">
-                <button type="button" style="margin-left: 5px; margin-right: 5px" class="close" data-ng-click="hideAlert()">×</button>
+                <button type="button" style="margin-left: 5px; margin-right: 5px" class="close" data-dismiss="alert" data-ng-click="hideAlert()">×</button>
                 <button type="button" style="margin-left: 5px; margin-right: 5px; float: right; line-height: 20px"
                         ng-show="showUndo" data-ng-click="hideAlert();showUndoAlert();">Undo</button>
                 {{successTextAlert}}
@@ -108,10 +73,17 @@
                 </tbody>
             </table>
         </div>
+        <div style="margin-bottom: 80px">
+            <pagination style="float: left" total-items="totalItems" ng-model="currentPage" max-size="maxSize" previous-text="Prev" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+            <pre style="float: right; margin-top: 18px">Page: {{currentPage}}/{{numPages}}</pre>
+        </div>
     </div>
     <aside id="sidebar">
+        <button id="showMap" class="btn btn-default" ng-click="isCollapsed = !isCollapsed" style="margin-bottom: 5px">Toggle map</button>
+        <div collapse="isCollapsed">
         <section class="widget" style="width: auto; height: 350px">
             <div style="border: 1px dotted rgb(149, 184, 231); width: inherit; height: inherit" id="map" ng-show="true"></div>
         </section>
+        </div>
     </aside>
 </div>

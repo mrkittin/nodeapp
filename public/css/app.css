@@ -28,6 +28,10 @@ body {
     height: 46px;
 }
 
+#showMap {
+    display: none;
+}
+
 
 a.nounderline:link {
     text-decoration:none;

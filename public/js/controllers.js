@@ -77,6 +77,8 @@ appControllers.controller('stateCtrl', ['$rootScope', '$timeout',
         $rootScope.hideAlert = function() {
             $rootScope.showSuccessAlert = false;
         };
+
+        $rootScope.isCollapsed = false;
     }]
 );
 
@@ -139,6 +141,18 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
             if (parseInt(location.zoom) >= 0) map.setZoom(parseInt(location.zoom));
         }
 
+//        pagination staff
+        $scope.totalItems = 54;
+        $scope.currentPage = 1;
+        $scope.maxSize = 5;
+
+        $scope.setPage = function (pageNo) {
+            $scope.currentPage = pageNo;
+        };
+
+        $scope.pageChanged = function() {
+            console.log('Page changed to: ' + $scope.currentPage);
+        };
     }]);
 
 appControllers.controller('locationDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope',

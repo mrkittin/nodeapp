@@ -21,7 +21,7 @@ only screen and (min-resolution: 2dppx) {
 }
 
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {
 
     #content {
         width: auto;
@@ -33,6 +33,9 @@ only screen and (min-resolution: 2dppx) {
         width: 100%;
         float: none;
         margin: 0;
+    }
+    #showMap {
+        display: inline-block;
     }
 }
 
