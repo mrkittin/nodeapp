@@ -86,15 +86,23 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
     function ($scope, $http) {
         $scope.$root.pageTitle = 'Locations';
         $scope.$root.hideAlert();
-        $http.get('api/locations').success(function(data) {
-            var newArr = _.map(data, function(element) {
-                return _.extend({}, element, {imageUrl: 'img/location.jpg'});
-            });
+        $scope.currentPage = 1;
 
-            $scope.locations = newArr;
-            $scope.headers = ['Name', 'City', 'Country', 'Address', 'Modified'];
-            initMap(); updateMap($scope.$root.selectedLoc);
-        });
+        $scope.headers = ['Name', 'City', 'Country', 'Address', 'Modified'];
+
+        function getLocations(page) {
+            $http.get('api/locations', { params: { page: page } })
+                .success(function(data) {
+                    var newArr = _.map(data, function(element) {
+                        return _.extend({}, element, {imageUrl: 'img/location.jpg'});
+                    });
+                    $scope.locations = newArr;
+                    $scope.totalItems = 47//$scope.locations.length;
+                    initMap(); updateMap($scope.$root.selectedLoc);
+                });
+        }
+
+        getLocations($scope.currentPage);
 
         $scope.columnSort_sortColumn = 'date_modified';
         $scope.columnSort_reverse = true;
@@ -122,6 +130,7 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
         var map;
 
         function initMap() {
+            if (map) return;
             latlng = new google.maps.LatLng(1,1);
             var myOptions = {
                 zoom: 8,
@@ -142,8 +151,7 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
         }
 
 //        pagination staff
-        $scope.totalItems = 54;
-        $scope.currentPage = 1;
+
         $scope.maxSize = 5;
 
         $scope.setPage = function (pageNo) {
@@ -151,7 +159,7 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
         };
 
         $scope.pageChanged = function() {
-            console.log('Page changed to: ' + $scope.currentPage);
+            getLocations($scope.currentPage);
         };
     }]);
 

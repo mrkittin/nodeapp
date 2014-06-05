@@ -1,7 +1,7 @@
 var nodeApp = angular.module('nodeApp', ['ngRoute', 'appControllers', 'locationsAnimations']);
 
-nodeApp.config(['$routeProvider',
-    function($routeProvider) {
+nodeApp.config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
         $routeProvider.
             when('/locations/list', {
                 templateUrl: 'partials/location-list.html',
@@ -22,4 +22,6 @@ nodeApp.config(['$routeProvider',
             otherwise({
                 redirectTo: '/locations/list'
             });
+
+//        $locationProvider.html5Mode(true);
     }]);

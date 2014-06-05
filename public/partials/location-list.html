@@ -51,6 +51,10 @@
             </div>
         </div>
         <div style="border: 1px dotted rgb(149, 184, 231); padding: 5px; margin-top: 5px;">
+            <div>
+                <pagination style="margin-top: 5px; margin-bottom: 5px" total-items="totalItems"
+                            ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+            </div><div>{{totalItems}}</div>
             <table class="table" style="margin-bottom: 1px">
                 <thead style="background-color: rgba(232,232,232,0.32)">
                 <tr>
@@ -73,10 +77,7 @@
                 </tbody>
             </table>
         </div>
-        <div style="margin-bottom: 80px">
-            <pagination style="float: left" total-items="totalItems" ng-model="currentPage" max-size="maxSize" previous-text="Prev" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
-            <pre style="float: right; margin-top: 18px">Page: {{currentPage}}/{{numPages}}</pre>
-        </div>
+
     </div>
     <aside id="sidebar">
         <button id="showMap" class="btn btn-default" ng-click="isCollapsed = !isCollapsed" style="margin-bottom: 5px">Toggle map</button>

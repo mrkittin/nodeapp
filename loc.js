@@ -55,7 +55,20 @@ var Location = mongoose.model('Location', locationsSchema);
 
 app.route('/api/locations')
     .get(function(req, res, next){
-        return Location.find(function(err, locations) {
+        if (req.query.page > 0) {
+            return Location.find()
+                .skip(req.query.page*10-10)
+                .limit(10)
+                .exec(function(err, locations) {
+                    if (!err) {
+                        return res.json(locations);
+                    } else {
+                        return console.log(err);
+                    }
+                });
+        }
+        return Location.find()
+            .exec(function(err, locations) {
             if (!err) {
                 return res.json(locations);
             } else {
