@@ -63,6 +63,7 @@ app.route('/api/locations')
                 return Location.find()
                     .skip(req.query.page*10-10)
                     .limit(10)
+                    .sort({'date_modified': -1})
                     .exec(function(err, locations) {
                         if (!err) {
                             result.rows = locations;
