@@ -93,11 +93,12 @@ appControllers.controller('locationListCtrl', ['$scope', '$http',
         function getLocations(page) {
             $http.get('api/locations', { params: { page: page } })
                 .success(function(data) {
-                    var newArr = _.map(data, function(element) {
+                    var rows = data.rows;
+                    _.map(rows, function(element) {
                         return _.extend({}, element, {imageUrl: 'img/location.jpg'});
                     });
-                    $scope.locations = newArr;
-                    $scope.totalItems = 47//$scope.locations.length;
+                    $scope.locations = rows;
+                    $scope.totalItems = data.total;
                     initMap(); updateMap($scope.$root.selectedLoc);
                 });
         }

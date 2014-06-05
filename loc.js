@@ -56,21 +56,31 @@ var Location = mongoose.model('Location', locationsSchema);
 app.route('/api/locations')
     .get(function(req, res, next){
         if (req.query.page > 0) {
-            return Location.find()
-                .skip(req.query.page*10-10)
-                .limit(10)
-                .exec(function(err, locations) {
-                    if (!err) {
-                        return res.json(locations);
-                    } else {
-                        return console.log(err);
-                    }
-                });
+            var total;
+            var result = {};
+            return Location.count(function(err, count){
+                total = count;
+                return Location.find()
+                    .skip(req.query.page*10-10)
+                    .limit(10)
+                    .exec(function(err, locations) {
+                        if (!err) {
+                            result.rows = locations;
+                            result.total = total;
+                            return res.json(result);
+                        } else {
+                            return console.log(err);
+                        }
+                    });
+            });
         }
         return Location.find()
             .exec(function(err, locations) {
             if (!err) {
-                return res.json(locations);
+                var result = {};
+                result.rows = locations;
+                result.total = locations.length;
+                return res.json(result);
             } else {
                 return console.log(err);
             }

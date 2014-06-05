@@ -18,7 +18,7 @@
                         <button type="button" class="btn btn-primary navbar-btn">Add new</button>
                     </a>
 
-                    <span class="navbar-text" style="float: none">Total locations: {{locations.length}}</span>
+                    <span class="navbar-text" style="float: none">Total locations: {{totalItems}}</span>
 
                     <form class="navbar-form" role="search" style="display: inline">
                         <div class="form-group">
@@ -54,7 +54,7 @@
             <div>
                 <pagination style="margin-top: 5px; margin-bottom: 5px" total-items="totalItems"
                             ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
-            </div><div>{{totalItems}}</div>
+            </div>
             <table class="table" style="margin-bottom: 1px">
                 <thead style="background-color: rgba(232,232,232,0.32)">
                 <tr>
